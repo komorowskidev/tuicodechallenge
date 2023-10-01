@@ -1,6 +1,8 @@
 package com.komorowskidev.tuicodechallenge.githubrepo.domain
 
 import com.komorowskidev.tuicodechallenge.githubrepo.GithubConfiguration
+import com.komorowskidev.tuicodechallenge.githubrepo.domain.type.Branch
+import com.komorowskidev.tuicodechallenge.githubrepo.domain.type.GithubRepository
 import org.springframework.stereotype.Service
 import org.springframework.web.reactive.function.client.WebClient
 import org.springframework.web.reactive.function.client.WebClientResponseException
@@ -33,5 +35,4 @@ class GithubWebClient(webClientBuilder: WebClient.Builder, private val githubCon
             .bodyToFlux(Branch::class.java)
             .onErrorResume(WebClientResponseException.NotFound::class.java) { Flux.empty() }
     }
-
 }

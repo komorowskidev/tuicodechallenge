@@ -1,5 +1,6 @@
 package com.komorowskidev.tuicodechallenge.githubrepo.domain
 
+import com.komorowskidev.tuicodechallenge.githubrepo.domain.type.Repository
 import org.springframework.stereotype.Service
 import reactor.core.publisher.Flux
 
