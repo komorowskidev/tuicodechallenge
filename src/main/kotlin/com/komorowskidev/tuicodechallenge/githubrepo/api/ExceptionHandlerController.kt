@@ -1,23 +1,25 @@
 package com.komorowskidev.tuicodechallenge.githubrepo.api
 
+import com.komorowskidev.tuicodechallenge.githubrepo.domain.UserNotFoundException
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.ControllerAdvice
 import org.springframework.web.bind.annotation.ExceptionHandler
-import org.springframework.web.server.ResponseStatusException
 
 @ControllerAdvice
 class ExceptionHandlerController {
 
-    @ExceptionHandler(ResponseStatusException::class)
-    fun handleResponseStatusException(e: ResponseStatusException): ResponseEntity<ErrorResponse> {
-        return ResponseEntity(ErrorResponse(e.statusCode.value(), e.reason ?: "An error occurred"), e.statusCode)
+    @ExceptionHandler(UserNotFoundException::class)
+    fun handleUserNotFoundException(e: UserNotFoundException): ResponseEntity<ErrorResponse> {
+        val httpStatus = HttpStatus.NOT_FOUND
+        return ResponseEntity(ErrorResponse(httpStatus.value(), e.message ?: "An error occurred"), httpStatus)
     }
 
     @ExceptionHandler(XmlResponseException::class)
     fun handleErrorResponseException(e: XmlResponseException): ResponseEntity<String> {
-        val response = "<status>${HttpStatus.NOT_ACCEPTABLE.value()}</status><Message>${e.message}</Message>"
-        return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).contentType(MediaType.APPLICATION_XML).body(response)
+        val httpStatus = HttpStatus.NOT_ACCEPTABLE
+        val response = "<status>${httpStatus.value()}</status><Message>${e.message}</Message>"
+        return ResponseEntity.status(httpStatus).contentType(MediaType.APPLICATION_XML).body(response)
     }
 }
