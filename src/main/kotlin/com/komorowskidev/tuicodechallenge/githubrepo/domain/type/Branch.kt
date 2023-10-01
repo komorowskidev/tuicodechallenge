@@ -1,4 +1,4 @@
-package com.komorowskidev.tuicodechallenge.githubrepo.domain
+package com.komorowskidev.tuicodechallenge.githubrepo.domain.type
 
 data class Branch(
     val name: String,
