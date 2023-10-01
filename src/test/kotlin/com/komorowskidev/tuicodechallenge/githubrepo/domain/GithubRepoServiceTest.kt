@@ -4,7 +4,6 @@ import com.komorowskidev.tuicodechallenge.githubrepo.domain.type.Branch
 import com.komorowskidev.tuicodechallenge.githubrepo.domain.type.Commit
 import com.komorowskidev.tuicodechallenge.githubrepo.domain.type.GithubRepository
 import com.komorowskidev.tuicodechallenge.githubrepo.domain.type.Repository
-import com.komorowskidev.tuicodechallenge.githubrepo.domain.type.RepositoryOwner
 import org.junit.jupiter.api.Test
 import org.mockito.kotlin.mock
 import org.mockito.kotlin.whenever
@@ -23,8 +22,8 @@ class GithubRepoServiceTest {
         val repositoryName1 = "repo1"
         val repositoryName2 = "repo2"
         val fork = true
-        val githubRepository1 = GithubRepository(repositoryName1, RepositoryOwner(ownerName), !fork)
-        val githubRepository2 = GithubRepository(repositoryName2, RepositoryOwner(ownerName), !fork)
+        val githubRepository1 = GithubRepository(repositoryName1, !fork)
+        val githubRepository2 = GithubRepository(repositoryName2, !fork)
         val branch1 = Branch("branch1", Commit("sha1"))
         val branch2 = Branch("branch2", Commit("sha2"))
         val branch3 = Branch("branch3", Commit("sha3"))
@@ -56,8 +55,8 @@ class GithubRepoServiceTest {
         val repositoryName1 = "repo1"
         val repositoryName2 = "repo2"
         val fork = true
-        val githubRepository1 = GithubRepository(repositoryName1, RepositoryOwner(ownerName), fork)
-        val githubRepository2 = GithubRepository(repositoryName2, RepositoryOwner(ownerName), !fork)
+        val githubRepository1 = GithubRepository(repositoryName1, fork)
+        val githubRepository2 = GithubRepository(repositoryName2, !fork)
         val branch3 = Branch("branch3", Commit("sha3"))
         val expectedRepository2 = Repository(repositoryName2, ownerName, listOf(branch3))
         whenever(githubWebClientMock.getRepositories(ownerName)).thenReturn(

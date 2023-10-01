@@ -14,7 +14,10 @@ import reactor.core.publisher.Flux
 @RequestMapping("/api")
 class GithubRepositoryController(private val githubRepoService: GithubRepoService) {
 
-    @GetMapping(value = ["user/{userName}/repositories"], produces = [MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE])
+    @GetMapping(
+        value = ["users/{userName}/repositories"],
+        produces = [MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE],
+    )
     fun getRepositoriesByUserName(
         @PathVariable userName: String,
         @RequestHeader("Accept") acceptHeader: String,
