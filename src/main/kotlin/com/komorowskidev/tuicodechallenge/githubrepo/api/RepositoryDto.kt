@@ -1,9 +1,7 @@
 package com.komorowskidev.tuicodechallenge.githubrepo.api
 
-import com.komorowskidev.tuicodechallenge.githubrepo.api.Branch
-
-data class Repository(
+data class RepositoryDto(
     val repositoryName: String,
     val ownerLogin: String,
-    val branches: List<Branch>
+    val branches: List<BranchDto>
 )

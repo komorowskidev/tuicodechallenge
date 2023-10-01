@@ -1,6 +1,6 @@
 package com.komorowskidev.tuicodechallenge.githubrepo.api
 
-data class Branch(
+data class BranchDto(
     val branchName: String,
     val lastCommitSha: String,
 )
