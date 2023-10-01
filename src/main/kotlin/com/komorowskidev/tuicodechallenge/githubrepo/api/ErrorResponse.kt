@@ -1,4 +1,4 @@
-package com.komorowskidev.tuicodechallenge.githubrepo
+package com.komorowskidev.tuicodechallenge.githubrepo.api
 
 import com.fasterxml.jackson.annotation.JsonProperty
 
