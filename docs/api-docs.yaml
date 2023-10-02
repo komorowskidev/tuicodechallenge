@@ -1,0 +1,60 @@
+openapi: "3.0.3"
+info:
+  title: "tuicodechallenge API"
+  description: "tuicodechallenge API"
+  version: "1.0.0"
+paths:
+  /api/users/{userName}/repositories:
+    get:
+      summary: "GET api/users/{userName}/repositories"
+      operationId: "getRepositoriesByUserName"
+      parameters:
+        - name: "userName"
+          in: "path"
+          required: true
+          schema:
+            type: "string"
+        - name: "Accept"
+          in: "header"
+          required: true
+          schema:
+            type: "string"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/Repository"
+            application/xml:
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/Repository"
+components:
+  schemas:
+    Commit:
+      type: "object"
+      properties:
+        sha:
+          type: "string"
+    Branch:
+      type: "object"
+      properties:
+        name:
+          type: "string"
+        commit:
+          $ref: "#/components/schemas/Commit"
+    Repository:
+      type: "object"
+      properties:
+        repositoryName:
+          type: "string"
+        ownerLogin:
+          type: "string"
+        branches:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/Branch"
